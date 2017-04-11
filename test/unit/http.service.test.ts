@@ -54,7 +54,7 @@ class HttpServiceTest {
     }
 
     /**
-     * Test if `HttpService` as a `get` function
+     * Test if `HttpService` has a `get` function
      */
     @test('- `HttpService` must have `get` function')
     testHttpServiceGet() {
@@ -75,5 +75,125 @@ class HttpServiceTest {
             }));
 
         unit.object(this._httpService.get('uri')).isInstanceOf(Observable);
+    }
+
+    /**
+     * Test if `HttpService` has a `post` function
+     */
+    @test('- `HttpService` must have `post` function')
+    testHttpServicePost() {
+        unit.function(this._httpService.post);
+    }
+
+    /**
+     * Test if `HttpService.post()` function returns an Observable
+     */
+    @test('- `HttpService.post()` function must return an Observable')
+    testHttpServicePostObservable() {
+        this
+            ._rxHRMock
+            .expects('post')
+            .returns(Observable.create(observer => {
+                observer.next();
+                observer.complete();
+            }));
+
+        unit.object(this._httpService.post('uri')).isInstanceOf(Observable);
+    }
+
+    /**
+     * Test if `HttpService` has a `put` function
+     */
+    @test('- `HttpService` must have `put` function')
+    testHttpServicePut() {
+        unit.function(this._httpService.put);
+    }
+
+    /**
+     * Test if `HttpService.put()` function returns an Observable
+     */
+    @test('- `HttpService.put()` function must return an Observable')
+    testHttpServicePutObservable() {
+        this
+            ._rxHRMock
+            .expects('put')
+            .returns(Observable.create(observer => {
+                observer.next();
+                observer.complete();
+            }));
+
+        unit.object(this._httpService.put('uri')).isInstanceOf(Observable);
+    }
+
+    /**
+     * Test if `HttpService` has a `patch` function
+     */
+    @test('- `HttpService` must have `patch` function')
+    testHttpServicePatch() {
+        unit.function(this._httpService.patch);
+    }
+
+    /**
+     * Test if `HttpService.patch()` function returns an Observable
+     */
+    @test('- `HttpService.patch()` function must return an Observable')
+    testHttpServicePatchObservable() {
+        this
+            ._rxHRMock
+            .expects('patch')
+            .returns(Observable.create(observer => {
+                observer.next();
+                observer.complete();
+            }));
+
+        unit.object(this._httpService.patch('uri')).isInstanceOf(Observable);
+    }
+
+    /**
+     * Test if `HttpService` has a `delete` function
+     */
+    @test('- `HttpService` must have `delete` function')
+    testHttpServiceDelete() {
+        unit.function(this._httpService.delete);
+    }
+
+    /**
+     * Test if `HttpService.delete()` function returns an Observable
+     */
+    @test('- `HttpService.delete()` function must return an Observable')
+    testHttpServiceDeleteObservable() {
+        this
+            ._rxHRMock
+            .expects('delete')
+            .returns(Observable.create(observer => {
+                observer.next();
+                observer.complete();
+            }));
+
+        unit.object(this._httpService.delete('uri')).isInstanceOf(Observable);
+    }
+
+    /**
+     * Test if `HttpService` has a `head` function
+     */
+    @test('- `HttpService` must have `head` function')
+    testHttpServiceHead() {
+        unit.function(this._httpService.head);
+    }
+
+    /**
+     * Test if `HttpService.head()` function returns an Observable
+     */
+    @test('- `HttpService.head()` function must return an Observable')
+    testHttpServiceHeadObservable() {
+        this
+            ._rxHRMock
+            .expects('head')
+            .returns(Observable.create(observer => {
+                observer.next();
+                observer.complete();
+            }));
+
+        unit.object(this._httpService.head('uri')).isInstanceOf(Observable);
     }
 }
