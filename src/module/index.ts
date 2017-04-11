@@ -1,2 +1,2 @@
-export * from './hello-world.module';
+export * from './http.module';
 export * from './services';

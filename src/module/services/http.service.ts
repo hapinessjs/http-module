@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@hapiness/core';
 
 @Injectable()
-export class HelloWorldService {
+export class HttpService {
     /**
      * Function to say Hello World
      * @return {Observable<string>}
