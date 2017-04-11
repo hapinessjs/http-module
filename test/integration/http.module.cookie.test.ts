@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 // element to test
 import { HttpModule, HttpService } from '../../src';
 
-@suite('- Integration HttpModuleTest method HttpService#get')
+@suite('- Integration HttpModuleTest method HttpService#cookie')
 class HttpModuleTest {
     /**
      * Function executed before the suite
@@ -43,15 +43,15 @@ class HttpModuleTest {
     after() {}
 
     /**
-     * Test if injected `HttpService` has a `get` function
+     * Test if injected `HttpService` has a `cookie` function
      */
-    @test('- Injected `HttpService` must have `get` function')
-    testInjectableHttpServiceGet(done) {
+    @test('- Injected `HttpService` must have `cookie` function')
+    testInjectableHttpServiceCookie(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 unit
-                    .function(this._httpService.get)
+                    .function(this._httpService.cookie)
                     .when(_ => Hapiness.kill().subscribe(__ => done()));
             }
         }
@@ -75,24 +75,24 @@ class HttpModuleTest {
     }
 
     /**
-     * Test if injected `HttpService.get()` function returns an Observable
+     * Test if injected `HttpService.cookie()` function returns an Observable
      */
-    @test('- Injected `HttpService.get()` function must return an Observable')
-    testInjectableHttpServiceGetObservable(done) {
+    @test('- Injected `HttpService.cookie()` function must return an Observable')
+    testInjectableHttpServiceCookieObservable(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 const _rxHRMock = unit.mock(this._httpService['_rxHR']);
 
                 _rxHRMock
-                    .expects('get')
+                    .expects('cookie')
                     .returns(Observable.create(observer => {
-                        observer.next('Get Value');
+                        observer.next('Cookie Value');
                         observer.complete();
                     }));
 
                 unit
-                    .object(this._httpService.get('uri'))
+                    .object(this._httpService.cookie('uri'))
                     .isInstanceOf(Observable)
                     .when(_ => {
                         _rxHRMock.verify();
@@ -121,28 +121,28 @@ class HttpModuleTest {
     }
 
     /**
-     * Test if injected `HttpService.get()` Observable returns 'Get Value'
+     * Test if injected `HttpService.cookie()` Observable returns 'Cookie Value'
      */
-    @test('- Injected `HttpService.get()` Observable function must return a string with `Get Value` value')
-    testInjectableHttpServiceGetObservableReturnString(done) {
+    @test('- Injected `HttpService.cookie()` Observable function must return a string with `Cookie Value` value')
+    testInjectableHttpServiceCookieObservableReturnString(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 const _rxHRMock = unit.mock(this._httpService['_rxHR']);
                 _rxHRMock
-                    .expects('get')
+                    .expects('cookie')
                     .returns(Observable.create(observer => {
-                        observer.next('Get Value');
+                        observer.next('Cookie Value');
                         observer.complete();
                     }));
 
                 this
                     ._httpService
-                    .get('uri')
+                    .cookie('uri')
                     .subscribe(res => {
                         unit
                             .string(res)
-                            .is('Get Value')
+                            .is('Cookie Value')
                             .when(_ => {
                                 _rxHRMock.verify();
                                 _rxHRMock.restore();

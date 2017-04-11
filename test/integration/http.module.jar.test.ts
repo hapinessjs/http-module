@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 // element to test
 import { HttpModule, HttpService } from '../../src';
 
-@suite('- Integration HttpModuleTest method HttpService#get')
+@suite('- Integration HttpModuleTest method HttpService#jar')
 class HttpModuleTest {
     /**
      * Function executed before the suite
@@ -43,15 +43,15 @@ class HttpModuleTest {
     after() {}
 
     /**
-     * Test if injected `HttpService` has a `get` function
+     * Test if injected `HttpService` has a `jar` function
      */
-    @test('- Injected `HttpService` must have `get` function')
-    testInjectableHttpServiceGet(done) {
+    @test('- Injected `HttpService` must have `jar` function')
+    testInjectableHttpServiceJar(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 unit
-                    .function(this._httpService.get)
+                    .function(this._httpService.jar)
                     .when(_ => Hapiness.kill().subscribe(__ => done()));
             }
         }
@@ -75,24 +75,24 @@ class HttpModuleTest {
     }
 
     /**
-     * Test if injected `HttpService.get()` function returns an Observable
+     * Test if injected `HttpService.jar()` function returns an Observable
      */
-    @test('- Injected `HttpService.get()` function must return an Observable')
-    testInjectableHttpServiceGetObservable(done) {
+    @test('- Injected `HttpService.jar()` function must return an Observable')
+    testInjectableHttpServiceJarObservable(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 const _rxHRMock = unit.mock(this._httpService['_rxHR']);
 
                 _rxHRMock
-                    .expects('get')
+                    .expects('jar')
                     .returns(Observable.create(observer => {
-                        observer.next('Get Value');
+                        observer.next('Jar Value');
                         observer.complete();
                     }));
 
                 unit
-                    .object(this._httpService.get('uri'))
+                    .object(this._httpService.jar())
                     .isInstanceOf(Observable)
                     .when(_ => {
                         _rxHRMock.verify();
@@ -121,28 +121,28 @@ class HttpModuleTest {
     }
 
     /**
-     * Test if injected `HttpService.get()` Observable returns 'Get Value'
+     * Test if injected `HttpService.jar()` Observable returns 'Jar Value'
      */
-    @test('- Injected `HttpService.get()` Observable function must return a string with `Get Value` value')
-    testInjectableHttpServiceGetObservableReturnString(done) {
+    @test('- Injected `HttpService.jar()` Observable function must return a string with `Jar Value` value')
+    testInjectableHttpServiceJarObservableReturnString(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 const _rxHRMock = unit.mock(this._httpService['_rxHR']);
                 _rxHRMock
-                    .expects('get')
+                    .expects('jar')
                     .returns(Observable.create(observer => {
-                        observer.next('Get Value');
+                        observer.next('Jar Value');
                         observer.complete();
                     }));
 
                 this
                     ._httpService
-                    .get('uri')
+                    .jar()
                     .subscribe(res => {
                         unit
                             .string(res)
-                            .is('Get Value')
+                            .is('Jar Value')
                             .when(_ => {
                                 _rxHRMock.verify();
                                 _rxHRMock.restore();

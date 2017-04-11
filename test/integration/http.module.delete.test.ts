@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 // element to test
 import { HttpModule, HttpService } from '../../src';
 
-@suite('- Integration HttpModuleTest method HttpService#get')
+@suite('- Integration HttpModuleTest method HttpService#delete')
 class HttpModuleTest {
     /**
      * Function executed before the suite
@@ -43,15 +43,15 @@ class HttpModuleTest {
     after() {}
 
     /**
-     * Test if injected `HttpService` has a `get` function
+     * Test if injected `HttpService` has a `delete` function
      */
-    @test('- Injected `HttpService` must have `get` function')
-    testInjectableHttpServiceGet(done) {
+    @test('- Injected `HttpService` must have `delete` function')
+    testInjectableHttpServiceDelete(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 unit
-                    .function(this._httpService.get)
+                    .function(this._httpService.delete)
                     .when(_ => Hapiness.kill().subscribe(__ => done()));
             }
         }
@@ -75,24 +75,24 @@ class HttpModuleTest {
     }
 
     /**
-     * Test if injected `HttpService.get()` function returns an Observable
+     * Test if injected `HttpService.delete()` function returns an Observable
      */
-    @test('- Injected `HttpService.get()` function must return an Observable')
-    testInjectableHttpServiceGetObservable(done) {
+    @test('- Injected `HttpService.delete()` function must return an Observable')
+    testInjectableHttpServiceDeleteObservable(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 const _rxHRMock = unit.mock(this._httpService['_rxHR']);
 
                 _rxHRMock
-                    .expects('get')
+                    .expects('delete')
                     .returns(Observable.create(observer => {
-                        observer.next('Get Value');
+                        observer.next('Delete Value');
                         observer.complete();
                     }));
 
                 unit
-                    .object(this._httpService.get('uri'))
+                    .object(this._httpService.delete('uri'))
                     .isInstanceOf(Observable)
                     .when(_ => {
                         _rxHRMock.verify();
@@ -121,28 +121,28 @@ class HttpModuleTest {
     }
 
     /**
-     * Test if injected `HttpService.get()` Observable returns 'Get Value'
+     * Test if injected `HttpService.delete()` Observable returns 'Delete Value'
      */
-    @test('- Injected `HttpService.get()` Observable function must return a string with `Get Value` value')
-    testInjectableHttpServiceGetObservableReturnString(done) {
+    @test('- Injected `HttpService.delete()` Observable function must return a string with `Delete Value` value')
+    testInjectableHttpServiceDeleteObservableReturnString(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 const _rxHRMock = unit.mock(this._httpService['_rxHR']);
                 _rxHRMock
-                    .expects('get')
+                    .expects('delete')
                     .returns(Observable.create(observer => {
-                        observer.next('Get Value');
+                        observer.next('Delete Value');
                         observer.complete();
                     }));
 
                 this
                     ._httpService
-                    .get('uri')
+                    .delete('uri')
                     .subscribe(res => {
                         unit
                             .string(res)
-                            .is('Get Value')
+                            .is('Delete Value')
                             .when(_ => {
                                 _rxHRMock.verify();
                                 _rxHRMock.restore();
