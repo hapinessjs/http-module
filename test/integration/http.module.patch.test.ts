@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 // element to test
 import { HttpModule, HttpService } from '../../src';
 
-@suite('- Integration HttpModuleTest method HttpService#put')
+@suite('- Integration HttpModuleTest method HttpService#patch')
 class HttpModuleTest {
     /**
      * Function executed before the suite
@@ -76,15 +76,15 @@ class HttpModuleTest {
     }
 
     /**
-     * Test if injected `HttpService` as a `put` function
+     * Test if injected `HttpService` as a `patch` function
      */
-    @test('- Injected `HttpService` must have `put` function')
-    testInjectableHttpServicePut(done) {
+    @test('- Injected `HttpService` must have `patch` function')
+    testInjectableHttpServicePatch(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 unit
-                    .function(this._httpService.put)
+                    .function(this._httpService.patch)
                     .when(_ => Hapiness.kill().subscribe(__ => done()));
             }
         }
@@ -108,24 +108,24 @@ class HttpModuleTest {
     }
 
     /**
-     * Test if injected `HttpService.put()` function returns an Observable
+     * Test if injected `HttpService.patch()` function returns an Observable
      */
-    @test('- Injected `HttpService.put()` function must return an Observable')
-    testInjectableHttpServicePutObservable(done) {
+    @test('- Injected `HttpService.patch()` function must return an Observable')
+    testInjectableHttpServicePatchObservable(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 const _rxHRMock = unit.mock(this._httpService['_rxHR']);
 
                 _rxHRMock
-                    .expects('put')
+                    .expects('patch')
                     .returns(Observable.create(observer => {
-                        observer.next('Put Value');
+                        observer.next('Patch Value');
                         observer.complete();
                     }));
 
                 unit
-                    .object(this._httpService.put('uri'))
+                    .object(this._httpService.patch('uri'))
                     .isInstanceOf(Observable)
                     .when(_ => {
                         _rxHRMock.verify();
@@ -154,28 +154,28 @@ class HttpModuleTest {
     }
 
     /**
-     * Test if injected `HttpService.put()` Observable returns 'Put Value'
+     * Test if injected `HttpService.patch()` Observable returns 'Patch Value'
      */
-    @test('- Injected `HttpService.put()` Observable function must return a string with `Put Value` value')
-    testInjectableHttpServicePutObservableReturnString(done) {
+    @test('- Injected `HttpService.patch()` Observable function must return a string with `Patch Value` value')
+    testInjectableHttpServicePatchObservableReturnString(done) {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
                 const _rxHRMock = unit.mock(this._httpService['_rxHR']);
                 _rxHRMock
-                    .expects('put')
+                    .expects('patch')
                     .returns(Observable.create(observer => {
-                        observer.next('Put Value');
+                        observer.next('Patch Value');
                         observer.complete();
                     }));
 
                 this
                     ._httpService
-                    .put('uri')
+                    .patch('uri')
                     .subscribe(res => {
                         unit
                             .string(res)
-                            .is('Put Value')
+                            .is('Patch Value')
                             .when(_ => {
                                 _rxHRMock.verify();
                                 _rxHRMock.restore();

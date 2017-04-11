@@ -15,7 +15,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpModule, HttpService } from '../../src';
 
 @suite('- Integration HttpModuleTest method HttpService#post')
-class HttpdModuleTest {
+class HttpModuleTest {
     /**
      * Function executed before the suite
      */
