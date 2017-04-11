@@ -57,15 +57,17 @@ class HttpServiceTest {
      * Test if `HttpService` has a `get` function
      */
     @test('- `HttpService` must have `get` function')
-    testHttpServiceGet() {
+    testHttpServiceGet(done) {
         unit.function(this._httpService.get);
+        done();
     }
 
     /**
      * Test if `HttpService.get()` function returns an Observable
      */
     @test('- `HttpService.get()` function must return an Observable')
-    testHttpServiceGetObservable() {
+    testHttpServiceGetObservable(done) {
+        // Mock
         this
             ._rxHRMock
             .expects('get')
@@ -74,22 +76,31 @@ class HttpServiceTest {
                 observer.complete();
             }));
 
-        unit.object(this._httpService.get('uri')).isInstanceOf(Observable);
+        // Test
+        unit
+            .object(this._httpService.get('uri'))
+            .isInstanceOf(Observable)
+            .when(_ => {
+                this._rxHRMock.verify();
+                this._rxHRMock.restore();
+                done();
+            });
     }
 
     /**
      * Test if `HttpService` has a `post` function
      */
     @test('- `HttpService` must have `post` function')
-    testHttpServicePost() {
+    testHttpServicePost(done) {
         unit.function(this._httpService.post);
+        done();
     }
 
     /**
      * Test if `HttpService.post()` function returns an Observable
      */
     @test('- `HttpService.post()` function must return an Observable')
-    testHttpServicePostObservable() {
+    testHttpServicePostObservable(done) {
         this
             ._rxHRMock
             .expects('post')
@@ -98,22 +109,30 @@ class HttpServiceTest {
                 observer.complete();
             }));
 
-        unit.object(this._httpService.post('uri')).isInstanceOf(Observable);
+        unit
+            .object(this._httpService.post('uri'))
+            .isInstanceOf(Observable)
+            .when(_ => {
+                this._rxHRMock.verify();
+                this._rxHRMock.restore();
+                done();
+            });
     }
 
     /**
      * Test if `HttpService` has a `put` function
      */
     @test('- `HttpService` must have `put` function')
-    testHttpServicePut() {
+    testHttpServicePut(done) {
         unit.function(this._httpService.put);
+        done();
     }
 
     /**
      * Test if `HttpService.put()` function returns an Observable
      */
     @test('- `HttpService.put()` function must return an Observable')
-    testHttpServicePutObservable() {
+    testHttpServicePutObservable(done) {
         this
             ._rxHRMock
             .expects('put')
@@ -122,22 +141,30 @@ class HttpServiceTest {
                 observer.complete();
             }));
 
-        unit.object(this._httpService.put('uri')).isInstanceOf(Observable);
+        unit
+            .object(this._httpService.put('uri'))
+            .isInstanceOf(Observable)
+            .when(_ => {
+                this._rxHRMock.verify();
+                this._rxHRMock.restore();
+                done();
+            });
     }
 
     /**
      * Test if `HttpService` has a `patch` function
      */
     @test('- `HttpService` must have `patch` function')
-    testHttpServicePatch() {
+    testHttpServicePatch(done) {
         unit.function(this._httpService.patch);
+        done();
     }
 
     /**
      * Test if `HttpService.patch()` function returns an Observable
      */
     @test('- `HttpService.patch()` function must return an Observable')
-    testHttpServicePatchObservable() {
+    testHttpServicePatchObservable(done) {
         this
             ._rxHRMock
             .expects('patch')
@@ -146,22 +173,30 @@ class HttpServiceTest {
                 observer.complete();
             }));
 
-        unit.object(this._httpService.patch('uri')).isInstanceOf(Observable);
+        unit
+            .object(this._httpService.patch('uri'))
+            .isInstanceOf(Observable)
+            .when(_ => {
+                this._rxHRMock.verify();
+                this._rxHRMock.restore();
+                done();
+            });
     }
 
     /**
      * Test if `HttpService` has a `delete` function
      */
     @test('- `HttpService` must have `delete` function')
-    testHttpServiceDelete() {
+    testHttpServiceDelete(done) {
         unit.function(this._httpService.delete);
+        done();
     }
 
     /**
      * Test if `HttpService.delete()` function returns an Observable
      */
     @test('- `HttpService.delete()` function must return an Observable')
-    testHttpServiceDeleteObservable() {
+    testHttpServiceDeleteObservable(done) {
         this
             ._rxHRMock
             .expects('delete')
@@ -170,22 +205,30 @@ class HttpServiceTest {
                 observer.complete();
             }));
 
-        unit.object(this._httpService.delete('uri')).isInstanceOf(Observable);
+        unit
+            .object(this._httpService.delete('uri'))
+            .isInstanceOf(Observable)
+            .when(_ => {
+                this._rxHRMock.verify();
+                this._rxHRMock.restore();
+                done();
+            });
     }
 
     /**
      * Test if `HttpService` has a `head` function
      */
     @test('- `HttpService` must have `head` function')
-    testHttpServiceHead() {
+    testHttpServiceHead(done) {
         unit.function(this._httpService.head);
+        done();
     }
 
     /**
      * Test if `HttpService.head()` function returns an Observable
      */
     @test('- `HttpService.head()` function must return an Observable')
-    testHttpServiceHeadObservable() {
+    testHttpServiceHeadObservable(done) {
         this
             ._rxHRMock
             .expects('head')
@@ -194,22 +237,30 @@ class HttpServiceTest {
                 observer.complete();
             }));
 
-        unit.object(this._httpService.head('uri')).isInstanceOf(Observable);
+        unit
+            .object(this._httpService.head('uri'))
+            .isInstanceOf(Observable)
+            .when(_ => {
+                this._rxHRMock.verify();
+                this._rxHRMock.restore();
+                done();
+            });
     }
 
     /**
      * Test if `HttpService` has a `jar` function
      */
     @test('- `HttpService` must have `jar` function')
-    testHttpServiceJar() {
+    testHttpServiceJar(done) {
         unit.function(this._httpService.jar);
+        done();
     }
 
     /**
      * Test if `HttpService.jar()` function returns an Observable
      */
     @test('- `HttpService.jar()` function must return an Observable')
-    testHttpServiceJarObservable() {
+    testHttpServiceJarObservable(done) {
         this
             ._rxHRMock
             .expects('jar')
@@ -218,22 +269,30 @@ class HttpServiceTest {
                 observer.complete();
             }));
 
-        unit.object(this._httpService.jar()).isInstanceOf(Observable);
+        unit
+            .object(this._httpService.jar())
+            .isInstanceOf(Observable)
+            .when(_ => {
+                this._rxHRMock.verify();
+                this._rxHRMock.restore();
+                done();
+            });
     }
 
     /**
      * Test if `HttpService` has a `cookie` function
      */
     @test('- `HttpService` must have `cookie` function')
-    testHttpServiceCookie() {
+    testHttpServiceCookie(done) {
         unit.function(this._httpService.cookie);
+        done();
     }
 
     /**
      * Test if `HttpService.cookie()` function returns an Observable
      */
     @test('- `HttpService.cookie()` function must return an Observable')
-    testHttpServiceCookieObservable() {
+    testHttpServiceCookieObservable(done) {
         this
             ._rxHRMock
             .expects('cookie')
@@ -242,6 +301,13 @@ class HttpServiceTest {
                 observer.complete();
             }));
 
-        unit.object(this._httpService.cookie('str')).isInstanceOf(Observable);
+        unit
+            .object(this._httpService.cookie('uri'))
+            .isInstanceOf(Observable)
+            .when(_ => {
+                this._rxHRMock.verify();
+                this._rxHRMock.restore();
+                done();
+            });
     }
 }
