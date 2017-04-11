@@ -196,4 +196,52 @@ class HttpServiceTest {
 
         unit.object(this._httpService.head('uri')).isInstanceOf(Observable);
     }
+
+    /**
+     * Test if `HttpService` has a `jar` function
+     */
+    @test('- `HttpService` must have `jar` function')
+    testHttpServiceJar() {
+        unit.function(this._httpService.jar);
+    }
+
+    /**
+     * Test if `HttpService.jar()` function returns an Observable
+     */
+    @test('- `HttpService.jar()` function must return an Observable')
+    testHttpServiceJarObservable() {
+        this
+            ._rxHRMock
+            .expects('jar')
+            .returns(Observable.create(observer => {
+                observer.next();
+                observer.complete();
+            }));
+
+        unit.object(this._httpService.jar()).isInstanceOf(Observable);
+    }
+
+    /**
+     * Test if `HttpService` has a `cookie` function
+     */
+    @test('- `HttpService` must have `cookie` function')
+    testHttpServiceCookie() {
+        unit.function(this._httpService.cookie);
+    }
+
+    /**
+     * Test if `HttpService.cookie()` function returns an Observable
+     */
+    @test('- `HttpService.cookie()` function must return an Observable')
+    testHttpServiceCookieObservable() {
+        this
+            ._rxHRMock
+            .expects('cookie')
+            .returns(Observable.create(observer => {
+                observer.next();
+                observer.complete();
+            }));
+
+        unit.object(this._httpService.cookie('str')).isInstanceOf(Observable);
+    }
 }
