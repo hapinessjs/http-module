@@ -18,6 +18,9 @@ class HttpServiceTest {
     // private property to store service instance
     private _httpService: HttpService;
 
+    // private property to store mock instance of RxHR
+    private _rxHRMock: any;
+
     /**
      * Function executed before the suite
      */
@@ -39,6 +42,7 @@ class HttpServiceTest {
      */
     before() {
         this._httpService = new HttpService();
+        this._rxHRMock = unit.mock(this._httpService['_rxHR']);
     }
 
     /**
@@ -46,28 +50,30 @@ class HttpServiceTest {
      */
     after() {
         this._httpService = undefined;
+        this._rxHRMock = undefined;
     }
 
     /**
-     * Test if `HttpService` as a `sayHello` function
+     * Test if `HttpService` as a `get` function
      */
-    @test('- `HttpService` must have `sayHello` function')
-    testHttpServiceSayHello() {
-        unit.function(this._httpService.sayHello);
+    @test('- `HttpService` must have `get` function')
+    testHttpServiceGet() {
+        unit.function(this._httpService.get);
     }
 
     /**
-     * Test if `HttpService.sayHello()` function returns an Observable
+     * Test if `HttpService.get()` function returns an Observable
      */
-    @test('- `HttpService.sayHello()` function must return an Observable')
-    testHttpServiceSayHelloObservable() {
-        unit.object(this._httpService.sayHello()).isInstanceOf(Observable);
-    }
-    /**
-     * Test if `HttpService.sayHello()` Observable returns 'Hello World'
-     */
-    @test('- `HttpService.sayHello()` Observable function must return a string with `Hello World` value')
-    testHttpServiceSayHelloObservableReturnString(done) {
-        this._httpService.sayHello().subscribe(m => unit.string(m).is('Hello World').when(_ => done()));
+    @test('- `HttpService.get()` function must return an Observable')
+    testHttpServiceGetObservable() {
+        this
+            ._rxHRMock
+            .expects('get')
+            .returns(Observable.create(observer => {
+                observer.next();
+                observer.complete();
+            }));
+
+        unit.object(this._httpService.get('uri')).isInstanceOf(Observable);
     }
 }
