@@ -54,6 +54,15 @@ class HttpServiceTest {
     }
 
     /**
+     * Test if `HttpService` has a `request` function
+     */
+    @test('- `HttpService` must have `request` function')
+    testHttpServiceRequest(done) {
+        unit.function(this._httpService.request);
+        done();
+    }
+
+    /**
      * Test if `HttpService` has a `get` function
      */
     @test('- `HttpService` must have `get` function')

@@ -1,6 +1,6 @@
 import { Injectable } from '@hapiness/core';
 import { Observable } from 'rxjs';
-import { Cookie, CoreOptions } from 'request';
+import { Cookie, CoreOptions, Request, RequestAPI, RequiredUriUrl } from 'request';
 import { RxCookieJar, RxHR, RxHttpRequest, RxHttpRequestResponse } from '@akanass/rx-http-request';
 
 @Injectable()
@@ -10,6 +10,15 @@ export class HttpService {
 
     constructor() {
         this._rxHR = RxHR;
+    }
+
+    /**
+     * Function to do a GET HTTP request
+     *
+     * @return {RequestAPI<Request, CoreOptions, RequiredUriUrl>}
+     */
+    request(): RequestAPI<Request, CoreOptions, RequiredUriUrl> {
+        return this._rxHR.request;
     }
 
     /**
