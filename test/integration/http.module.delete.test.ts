@@ -82,9 +82,9 @@ class HttpModuleTest {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
-                const _rxHRMock = unit.mock(this._httpService['_rxHR']);
+                const rxHRMock = unit.mock(this._httpService['_rxHR']);
 
-                _rxHRMock
+                rxHRMock
                     .expects('delete')
                     .returns(Observable.create(observer => {
                         observer.next('Delete Value');
@@ -95,8 +95,8 @@ class HttpModuleTest {
                     .object(this._httpService.delete('uri'))
                     .isInstanceOf(Observable)
                     .when(_ => {
-                        _rxHRMock.verify();
-                        _rxHRMock.restore();
+                        rxHRMock.verify();
+                        rxHRMock.restore();
                         Hapiness.kill().subscribe(__ => done());
                     });
             }
@@ -128,8 +128,8 @@ class HttpModuleTest {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
-                const _rxHRMock = unit.mock(this._httpService['_rxHR']);
-                _rxHRMock
+                const rxHRMock = unit.mock(this._httpService['_rxHR']);
+                rxHRMock
                     .expects('delete')
                     .returns(Observable.create(observer => {
                         observer.next('Delete Value');
@@ -144,8 +144,8 @@ class HttpModuleTest {
                             .string(res)
                             .is('Delete Value')
                             .when(_ => {
-                                _rxHRMock.verify();
-                                _rxHRMock.restore();
+                                rxHRMock.verify();
+                                rxHRMock.restore();
 
                                 Hapiness.kill().subscribe(__ => done());
                             });

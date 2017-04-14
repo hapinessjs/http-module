@@ -13,11 +13,11 @@ export class HttpService {
     }
 
     /**
-     * Function to do a GET HTTP request
+     * Function to get the HTTP request object
      *
      * @return {RequestAPI<Request, CoreOptions, RequiredUriUrl>}
      */
-    request(): RequestAPI<Request, CoreOptions, RequiredUriUrl> {
+    get request(): RequestAPI<Request, CoreOptions, RequiredUriUrl> {
         return this._rxHR.request;
     }
 

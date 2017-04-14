@@ -82,9 +82,9 @@ class HttpModuleTest {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
-                const _rxHRMock = unit.mock(this._httpService['_rxHR']);
+                const rxHRMock = unit.mock(this._httpService['_rxHR']);
 
-                _rxHRMock
+                rxHRMock
                     .expects('head')
                     .returns(Observable.create(observer => {
                         observer.next('Head Value');
@@ -95,8 +95,8 @@ class HttpModuleTest {
                     .object(this._httpService.head('uri'))
                     .isInstanceOf(Observable)
                     .when(_ => {
-                        _rxHRMock.verify();
-                        _rxHRMock.restore();
+                        rxHRMock.verify();
+                        rxHRMock.restore();
                         Hapiness.kill().subscribe(__ => done());
                     });
             }
@@ -128,8 +128,8 @@ class HttpModuleTest {
         @Lib()
         class HttpLib {
             constructor(private _httpService: HttpService) {
-                const _rxHRMock = unit.mock(this._httpService['_rxHR']);
-                _rxHRMock
+                const rxHRMock = unit.mock(this._httpService['_rxHR']);
+                rxHRMock
                     .expects('head')
                     .returns(Observable.create(observer => {
                         observer.next('Head Value');
@@ -144,8 +144,8 @@ class HttpModuleTest {
                             .string(res)
                             .is('Head Value')
                             .when(_ => {
-                                _rxHRMock.verify();
-                                _rxHRMock.restore();
+                                rxHRMock.verify();
+                                rxHRMock.restore();
 
                                 Hapiness.kill().subscribe(__ => done());
                             });

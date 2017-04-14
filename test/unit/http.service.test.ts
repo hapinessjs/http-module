@@ -63,6 +63,30 @@ class HttpServiceTest {
     }
 
     /**
+     * Test if `HttpService.request()` function returns an Object
+     */
+    @test('- `HttpService.request()` function must return an Object')
+    testHttpServiceRequestReturnObject(done) {
+        const requestMock = unit.mock(this._httpService['_rxHR'].request);
+
+        // Mock
+        requestMock
+            .expects('get')
+            .once()
+            .callsArg(2);
+
+        // Test
+        this._httpService.request.get('the_uri', null, (err, response) => {
+            console.log('ERR => ', err);
+            console.log('RESPONSE => ', response);
+            requestMock.verify();
+            requestMock.restore();
+
+            done();
+        });
+    }
+
+    /**
      * Test if `HttpService` has a `get` function
      */
     @test('- `HttpService` must have `get` function')
