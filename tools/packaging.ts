@@ -45,7 +45,7 @@ class Packaging {
      */
     private _copy(file: string): Observable<any> {
         // copy package.json
-        if (file.indexOf('package.json') != -1) {
+        if (file.indexOf('package.json') !== -1) {
             return this._copyAndCleanupPackageJson(file);
         }
 
@@ -72,7 +72,7 @@ class Packaging {
      *
      * @private
      */
-    private _remove(file: string, remove?:boolean): Observable<any> {
+    private _remove(file: string, remove?: boolean): Observable<any> {
         // remove original files
         return <Observable<any>> Observable.create((observer) => {
             if (remove) {
