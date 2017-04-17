@@ -39,8 +39,8 @@
     "@types/node" "*"
 
 "@types/fs-extra@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-2.0.0.tgz#1e305d412c4e9e17e5553f59f143e4a49c5573a4"
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-2.1.0.tgz#8b350239c0455d92b8d3c626edac193860ff395f"
   dependencies:
     "@types/node" "*"
 
@@ -51,12 +51,12 @@
     "@types/node" "*"
 
 "@types/hoek@^4.1.2":
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/@types/hoek/-/hoek-4.1.2.tgz#0e05380e21876b5715096280dae56ed32c9a4fd7"
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/@types/hoek/-/hoek-4.1.3.tgz#d1982d48fb0d2a0e5d7e9d91838264d8e428d337"
 
 "@types/joi@^10.0.1":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/@types/joi/-/joi-10.0.1.tgz#d6fd34d357b79931f655bf80a87374f1c0f90728"
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/@types/joi/-/joi-10.0.2.tgz#638b7b0beb4b6da6018a046dc3826a3b9a447385"
 
 "@types/node@*", "@types/node@^7.0.12":
   version "7.0.12"
@@ -81,8 +81,8 @@ accept@2.x.x:
     hoek "4.x.x"
 
 ajv@^4.9.1:
-  version "4.11.6"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.6.tgz#947e93049790942b2a2d60a8289b28924d39f987"
+  version "4.11.7"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.7.tgz#8655a5d86d0824985cc471a1d913fb6729a0ec48"
   dependencies:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
@@ -1757,7 +1757,7 @@ typedarray-to-buffer@^3.1.2:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^2.2.2:
+typescript@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.3.0.tgz#2e63e09284392bc8158a2444c33e2093795c0418"
 
