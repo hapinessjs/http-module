@@ -7,9 +7,12 @@ import {
 
 @Injectable()
 export class HttpService {
-
+    // private property to store RxHttpRequest instance
     private _rxHR: RxHttpRequest;
 
+    /**
+     * Service constructor
+     */
     constructor() {
         this._rxHR = RxHR;
     }
