@@ -33,6 +33,156 @@
 
 # Http Module
 
-This package provides basics to create a new [Hapiness](https://github.com/hapinessjs/hapiness) module.
+`Http` Module for the [Hapiness](https://github.com/hapinessjs/hapiness) framework, allowing user to deal with `http` request.
 
-Implementations of all existing [Hapiness' features](https://github.com/hapinessjs/hapiness/blob/master/API.md) are done and according tests too.
+## Table of contents
+
+* [Using http module inside Hapiness application](#using-http-module-inside-hapiness-application)
+    * [Yarn or NPM it in your package.json](#yarn-or-npm-it-in-your-packagejson)
+    * [Import HttpModule](#import-httpmodule)
+    * [Use it anywhere](#use-it-anywhere)
+* [API in Detail](#api-in-detail)
+* [Contributing](#contributing)
+* [Change History](#change-history)
+* [Maintainers](#maintainers)
+* [License](#license)
+    
+## Using http module inside Hapiness application
+
+### `yarn` or `npm` it in your `package.json`
+
+```bash
+$ npm install --save @hapiness/http
+
+or
+
+$ yarn add @hapiness/http
+```
+
+```javascript
+"dependencies": {
+    "@hapiness/core": "^1.0.0-beta.2",
+    "@hapiness/http": "^1.0.0-beta.2",
+    //...
+}
+//...
+```
+
+### import `HttpModule`
+
+```javascript
+import { HapinessModule } from '@hapiness/core';
+import { HttpModule } from '@hapiness/http';
+
+@HapinessModule({
+    version: '1.0.0',
+    declarations: [
+        LibWithHttpCalls
+    ],
+    imports: [
+        HttpModule
+    ]
+})
+class HapinessModuleNeedsHttpModule {}
+```
+
+### use it anywhere
+
+You can use `HttpService` anywhere in your module with **dependency injection**.
+
+```javascript
+import { Lib } from '@hapiness/core';
+import { HttpService } from '@hapiness/http';
+
+@Lib()
+class LibWithHttpCalls {
+    constructor(private _http: HttpService){}
+    
+    crawlWebPage(): void {
+        this._http.get('http://www.google.fr').subscribe(
+            (data) => {
+        
+                if (data.response.statusCode === 200) {
+                    console.log(data.body); // Show the HTML for the Google homepage.
+                }
+            },
+            (err) => console.error(err) // Show error in console
+        );
+    }
+}
+```
+
+[Back to top](#table-of-contents)
+
+## API in Detail
+
+This module is an **encapsulation** of [Rx-Http-Request](https://github.com/njl07/rx-http-request) library to allow their features inside [Hapiness](https://github.com/hapinessjs/hapiness) framework.
+
+Methods implemented are:
+
+* `.request`
+* `.get(uri[, options])`
+* `.getBuffer(uri[, options])`
+* `.post(uri[, options])`
+* `.put(uri[, options])`
+* `.patch(uri[, options])`
+* `.delete(uri[, options])`
+* `.head(uri[, options])`
+* `.jar()`
+* `.cookie(str)`
+
+If you want to have all **details** for these methods, see [Rx-Http-Request's API details](https://github.com/njl07/rx-http-request#api-in-detail).
+
+[Back to top](#table-of-contents)
+
+## Contributing
+
+To set up your development environment:
+
+1. clone the repo to your workspace,
+2. in the shell `cd` to the main folder,
+3. hit `npm or yarn install`,
+4. run `npm or yarn run test`.
+    * It will lint the code and execute all tests. 
+    * The test coverage report can be viewed from `./coverage/lcov-report/index.html`.
+
+[Back to top](#table-of-contents)
+
+## Change History
+
+* v1.0.0-beta.2 (2017-04-18)
+    * Create `Http` module.
+    * Implementation of [Rx-Http-Request](https://github.com/njl07/rx-http-request) API.
+    * Tests module API.
+    * Documentation.
+    * Module version related to core version.
+    
+[Back to top](#table-of-contents)
+
+## Maintainers
+
+<table>
+    <tr>
+        <td colspan="4" align="center"><a href="https://www.tadaweb.com"><img src="https://tadaweb.com/images/tadaweb/logo.png" width="117" alt="tadaweb" /></a></td>
+    </tr>
+    <tr>
+        <td align="center"><a href="https://github.com/Juneil"><img src="https://avatars3.githubusercontent.com/u/6546204?v=3&s=117" width="117"/></a></td>
+        <td align="center"><a href="https://github.com/antoinegomez"><img src="https://avatars3.githubusercontent.com/u/997028?v=3&s=117" width="117"/></a></td>
+        <td align="center"><a href="https://github.com/srz09"><img src="https://avatars3.githubusercontent.com/u/6841511?v=3&s=117" width="117"/></a></td>
+        <td align="center"><a href="https://github.com/njl07"><img src="https://avatars3.githubusercontent.com/u/1673977?v=3&s=117" width="117"/></a></td>
+    </tr>
+    <tr>
+        <td align="center"><a href="https://github.com/Juneil">Julien Fauville</a></td>
+        <td align="center"><a href="https://github.com/antoinegomez">Antoine Gomez</a></td>
+        <td align="center"><a href="https://github.com/srz09">Sébastien Ritz</a></td>
+        <td align="center"><a href="https://github.com/njl07">Nicolas Jessel</a></td>
+    </tr>
+</table>
+
+[Back to top](#table-of-contents)
+
+## License
+
+Copyright (c) 2017 **Hapiness** Licensed under the [MIT license](https://github.com/hapinessjs/http-module/blob/master/LICENSE.md).
+
+[Back to top](#table-of-contents)
