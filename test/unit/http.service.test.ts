@@ -77,8 +77,6 @@ class HttpServiceTest {
 
         // Test
         this._httpService.request.get('the_uri', null, (err, response) => {
-            console.log('ERR => ', err);
-            console.log('RESPONSE => ', response);
             requestMock.verify();
             requestMock.restore();
 
