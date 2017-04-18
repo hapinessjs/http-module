@@ -119,6 +119,40 @@ class HttpServiceTest {
     }
 
     /**
+     * Test if `HttpService` has a `getBuffer` function
+     */
+    @test('- `HttpService` must have `getBuffer` function')
+    testHttpServiceGetBuffer(done) {
+        unit.function(this._httpService.getBuffer);
+        done();
+    }
+
+    /**
+     * Test if `HttpService.getBuffer()` function returns an Observable
+     */
+    @test('- `HttpService.getBuffer()` function must return an Observable')
+    testHttpServiceGetBufferObservable(done) {
+        // Mock
+        this
+            ._rxHRMock
+            .expects('getBuffer')
+            .returns(Observable.create(observer => {
+                observer.next();
+                observer.complete();
+            }));
+
+        // Test
+        unit
+            .object(this._httpService.getBuffer('uri'))
+            .isInstanceOf(Observable)
+            .when(_ => {
+                this._rxHRMock.verify();
+                this._rxHRMock.restore();
+                done();
+            });
+    }
+
+    /**
      * Test if `HttpService` has a `post` function
      */
     @test('- `HttpService` must have `post` function')

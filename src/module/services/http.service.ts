@@ -27,6 +27,18 @@ export class HttpService {
     }
 
     /**
+     * Function to do a GET HTTP request and to return a buffer
+     *
+     * @param uri
+     * @param options
+     *
+     * @return {Observable<RxHttpRequestResponse>}
+     */
+    getBuffer(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
+        return this._rxHR.getBuffer(uri, options);
+    }
+
+    /**
      * Function to do a GET HTTP request
      *
      * @param uri {string}
