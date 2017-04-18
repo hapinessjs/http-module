@@ -3,7 +3,6 @@ import { HttpService } from './services';
 
 @HapinessModule({
     version: '1.0.0',
-    declarations: [],
     providers: [
         HttpService
     ],

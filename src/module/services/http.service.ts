@@ -1,13 +1,18 @@
 import { Injectable } from '@hapiness/core';
-import { Observable } from 'rxjs';
-import { Cookie, CoreOptions, Request, RequestAPI, RequiredUriUrl } from 'request';
-import { RxCookieJar, RxHR, RxHttpRequest, RxHttpRequestResponse } from '@akanass/rx-http-request';
+import { Observable } from 'rxjs/Observable';
+import {
+    RxCookieJar, RxHR, RxHttpRequest, RxHttpRequestResponse, Cookie, CoreOptions, Request, RequestAPI, RequiredUriUrl
+}
+    from '@akanass/rx-http-request';
 
 @Injectable()
 export class HttpService {
-
+    // private property to store RxHttpRequest instance
     private _rxHR: RxHttpRequest;
 
+    /**
+     * Service constructor
+     */
     constructor() {
         this._rxHR = RxHR;
     }

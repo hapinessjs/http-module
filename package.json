@@ -1,6 +1,6 @@
 {
-    "name": "@hapiness/http-module",
-    "version": "0.0.1",
+    "name": "@hapiness/http",
+    "version": "1.0.0-beta.2",
     "description": "Http Module for the Hapiness framework, allowing user to deal with http request",
     "main": "index.js",
     "types": "index.d.ts",
@@ -21,6 +21,7 @@
     "keywords": [
         "HapiJS",
         "Hapi",
+        "Hapiness",
         "Framework",
         "NodeJS",
         "Node",
@@ -68,13 +69,12 @@
     },
     "homepage": "https://github.com/hapinessjs/http-module#readme",
     "dependencies": {
-        "@akanass/rx-http-request": "^2.1.1",
+        "@akanass/rx-http-request": "^2.2.0",
         "@hapiness/core": "^1.0.0-beta.2",
-        "debug": "^2.6.3",
         "rxjs": "^5.3.0"
     },
     "devDependencies": {
-        "@types/fs-extra": "^2.0.0",
+        "@types/fs-extra": "^2.1.0",
         "coveralls": "^2.13.0",
         "fs-extra": "^2.1.2",
         "istanbul": "^1.1.0-alpha.1",
@@ -82,8 +82,8 @@
         "mocha-typescript": "^1.0.23",
         "rimraf": "^2.6.1",
         "ts-node": "^3.0.2",
-        "tslint": "^5.0.0",
-        "typescript": "^2.2.2",
+        "tslint": "^5.1.0",
+        "typescript": "^2.3.0",
         "unit.js": "^2.0.0"
     },
     "engines": {

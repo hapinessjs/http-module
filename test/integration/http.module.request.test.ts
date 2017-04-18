@@ -8,8 +8,7 @@ import { test, suite } from 'mocha-typescript';
  */
 import * as unit from 'unit.js';
 
-import { Hapiness, HapinessModule, HttpServer, Lib, OnStart } from '@hapiness/core';
-import { Observable } from 'rxjs/Observable';
+import { Hapiness, HapinessModule, Lib } from '@hapiness/core';
 
 // element to test
 import { HttpModule, HttpService } from '../../src';
