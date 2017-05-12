@@ -150,6 +150,11 @@ To set up your development environment:
 
 ## Change History
 
+* v1.0.0-beta.3 (2017-05-12)
+    * Latest packages' versions.
+    * Add check files in packaging process.
+    * Extended `tsconfig`.
+    * Module version related to core version.
 * v1.0.0-beta.2 (2017-04-18)
     * Create `Http` module.
     * Implementation of [Rx-Http-Request](https://github.com/njl07/rx-http-request) API.

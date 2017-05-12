@@ -17,8 +17,7 @@
             "boom",
             "hapi",
             "hoek",
-            "joi",
-            "fs-extra"
+            "joi"
         ],
         "lib": [
             "dom",
