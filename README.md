@@ -61,8 +61,8 @@ $ yarn add @hapiness/http
 
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-beta.4",
-    "@hapiness/http": "^1.0.0-beta.4",
+    "@hapiness/core": "^1.0.0-beta.5",
+    "@hapiness/http": "^1.0.0-beta.5",
     //...
 }
 //...
@@ -150,6 +150,9 @@ To set up your development environment:
 
 ## Change History
 
+* v1.0.0-beta.5 (2017-05-15)
+    * Latest packages' versions.
+    * Module version related to core version.
 * v1.0.0-beta.4 (2017-05-15)
     * Latest packages' versions.
     * Module version related to core version.
