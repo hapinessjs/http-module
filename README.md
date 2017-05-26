@@ -150,6 +150,9 @@ To set up your development environment:
 
 ## Change History
 
+* v1.0.0-beta.6 (2017-05-26)
+    * Latest packages' versions.
+    * Module version related to core version.
 * v1.0.0-beta.5 (2017-05-15)
     * Latest packages' versions.
     * Module version related to core version.
