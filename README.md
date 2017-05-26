@@ -61,8 +61,8 @@ $ yarn add @hapiness/http
 
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-beta.5",
-    "@hapiness/http": "^1.0.0-beta.5",
+    "@hapiness/core": "^1.0.0-beta.6",
+    "@hapiness/http": "^1.0.0-beta.6",
     //...
 }
 //...
