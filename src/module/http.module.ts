@@ -2,7 +2,7 @@ import { HapinessModule } from '@hapiness/core';
 import { HttpService } from './services';
 
 @HapinessModule({
-    version: '1.0.0-beta.2',
+    version: '1.0.0',
     providers: [
         HttpService
     ],
