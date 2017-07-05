@@ -9,6 +9,7 @@ import { test, suite } from 'mocha-typescript';
 import * as unit from 'unit.js';
 
 import { Hapiness, HapinessModule, Lib } from '@hapiness/core';
+import { HttpServerExt } from '@hapiness/core/extensions/http-server';
 import { Observable } from 'rxjs/Observable';
 
 // element to test
@@ -52,16 +53,12 @@ class HttpModuleTest {
             constructor(private _httpService: HttpService) {
                 unit
                     .function(this._httpService.getBuffer)
-                    .when(_ => Hapiness.kill().subscribe(__ => done()));
+                    .when(_ => Hapiness['extensions'].pop().value.stop().then(__ => done()));
             }
         }
 
         @HapinessModule({
             version: '1.0.0',
-            options: {
-                host: '0.0.0.0',
-                port: 4443
-            },
             imports: [
                 HttpModule
             ],
@@ -71,7 +68,10 @@ class HttpModuleTest {
         })
         class HttpModuleTest {}
 
-        Hapiness.bootstrap(HttpModuleTest);
+        Hapiness.bootstrap(HttpModuleTest, [HttpServerExt.setConfig({
+                host: '0.0.0.0',
+                port: 4443
+        })]);
     }
 
     /**
@@ -97,17 +97,13 @@ class HttpModuleTest {
                     .when(_ => {
                         rxHRMock.verify();
                         rxHRMock.restore();
-                        Hapiness.kill().subscribe(__ => done());
+                        Hapiness['extensions'].pop().value.stop().then(__ => done());
                     });
             }
         }
 
         @HapinessModule({
             version: '1.0.0',
-            options: {
-                host: '0.0.0.0',
-                port: 4443
-            },
             imports: [
                 HttpModule
             ],
@@ -117,7 +113,10 @@ class HttpModuleTest {
         })
         class HttpModuleTest {}
 
-        Hapiness.bootstrap(HttpModuleTest);
+        Hapiness.bootstrap(HttpModuleTest, [HttpServerExt.setConfig({
+                host: '0.0.0.0',
+                port: 4443
+        })]);
     }
 
     /**
@@ -147,7 +146,7 @@ class HttpModuleTest {
                                 rxHRMock.verify();
                                 rxHRMock.restore();
 
-                                Hapiness.kill().subscribe(__ => done());
+                                Hapiness['extensions'].pop().value.stop().then(__ => done());
                             });
                     });
             }
@@ -155,10 +154,6 @@ class HttpModuleTest {
 
         @HapinessModule({
             version: '1.0.0',
-            options: {
-                host: '0.0.0.0',
-                port: 4443
-            },
             imports: [
                 HttpModule
             ],
@@ -168,6 +163,9 @@ class HttpModuleTest {
         })
         class HttpModuleTest {}
 
-        Hapiness.bootstrap(HttpModuleTest);
+        Hapiness.bootstrap(HttpModuleTest, [HttpServerExt.setConfig({
+                host: '0.0.0.0',
+                port: 4443
+        })]);
     }
 }
