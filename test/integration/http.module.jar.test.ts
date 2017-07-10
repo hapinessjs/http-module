@@ -66,9 +66,9 @@ class HttpModuleTest {
                 HttpLib
             ]
         })
-        class HttpModuleTest {}
+        class HMTest {}
 
-        Hapiness.bootstrap(HttpModuleTest, [HttpServerExt.setConfig({
+        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
                 host: '0.0.0.0',
                 port: 4443
         })]);
@@ -111,9 +111,9 @@ class HttpModuleTest {
                 HttpLib
             ]
         })
-        class HttpModuleTest {}
+        class HMTest {}
 
-        Hapiness.bootstrap(HttpModuleTest, [HttpServerExt.setConfig({
+        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
                 host: '0.0.0.0',
                 port: 4443
         })]);
@@ -161,9 +161,9 @@ class HttpModuleTest {
                 HttpLib
             ]
         })
-        class HttpModuleTest {}
+        class HMTest {}
 
-        Hapiness.bootstrap(HttpModuleTest, [HttpServerExt.setConfig({
+        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
                 host: '0.0.0.0',
                 port: 4443
         })]);
