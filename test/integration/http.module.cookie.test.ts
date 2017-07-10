@@ -8,8 +8,7 @@ import { test, suite } from 'mocha-typescript';
  */
 import * as unit from 'unit.js';
 
-import { Hapiness, HapinessModule, Lib } from '@hapiness/core';
-import { HttpServerExt } from '@hapiness/core/extensions/http-server';
+import { Hapiness, HapinessModule, Lib, HttpServerExt } from '@hapiness/core';
 import { Observable } from 'rxjs/Observable';
 
 // element to test
@@ -66,9 +65,9 @@ class HttpModuleTest {
                 HttpLib
             ]
         })
-        class HttpModuleTest {}
+        class HMTest {}
 
-        Hapiness.bootstrap(HttpModuleTest, [HttpServerExt.setConfig({
+        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
                 host: '0.0.0.0',
                 port: 4443
         })]);
@@ -111,9 +110,9 @@ class HttpModuleTest {
                 HttpLib
             ]
         })
-        class HttpModuleTest {}
+        class HMTest {}
 
-        Hapiness.bootstrap(HttpModuleTest, [HttpServerExt.setConfig({
+        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
                 host: '0.0.0.0',
                 port: 4443
         })]);
@@ -161,9 +160,9 @@ class HttpModuleTest {
                 HttpLib
             ]
         })
-        class HttpModuleTest {}
+        class HMTest {}
 
-        Hapiness.bootstrap(HttpModuleTest, [HttpServerExt.setConfig({
+        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
                 host: '0.0.0.0',
                 port: 4443
         })]);
