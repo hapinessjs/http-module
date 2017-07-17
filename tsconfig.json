@@ -13,11 +13,7 @@
         "skipLibCheck": true,
         "typeRoots": ["./node_modules/@types"],
         "types": [
-            "node",
-            "boom",
-            "hapi",
-            "hoek",
-            "joi"
+            "node"
         ],
         "lib": [
             "dom",
