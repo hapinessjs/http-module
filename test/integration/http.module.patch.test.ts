@@ -53,7 +53,7 @@ class HttpModuleTest {
             constructor(private _httpService: HttpService) {
                 unit
                     .function(this._httpService.patch)
-                    .when(_ => Hapiness['extensions'].pop().value.stop().then(__ => done()));
+                    .when(_ => done());
             }
         }
 
@@ -68,10 +68,7 @@ class HttpModuleTest {
         })
         class HMTest {}
 
-        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
-                host: '0.0.0.0',
-                port: 4443
-        })]);
+        Hapiness.bootstrap(HMTest, []);
     }
 
     /**
@@ -97,7 +94,7 @@ class HttpModuleTest {
                     .when(_ => {
                         rxHRMock.verify();
                         rxHRMock.restore();
-                        Hapiness['extensions'].pop().value.stop().then(__ => done());
+                        done();
                     });
             }
         }
@@ -113,10 +110,7 @@ class HttpModuleTest {
         })
         class HMTest {}
 
-        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
-                host: '0.0.0.0',
-                port: 4443
-        })]);
+        Hapiness.bootstrap(HMTest, []);
     }
 
     /**
@@ -146,7 +140,7 @@ class HttpModuleTest {
                                 rxHRMock.verify();
                                 rxHRMock.restore();
 
-                                Hapiness['extensions'].pop().value.stop().then(__ => done());
+                                done();
                             });
                     });
             }
@@ -163,9 +157,6 @@ class HttpModuleTest {
         })
         class HMTest {}
 
-        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
-                host: '0.0.0.0',
-                port: 4443
-        })]);
+        Hapiness.bootstrap(HMTest, []);
     }
 }

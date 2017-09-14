@@ -53,7 +53,7 @@ class HttpModuleTest {
                 unit
                     .object(this._httpService)
                     .isInstanceOf(HttpService)
-                    .when(_ => Hapiness['extensions'].pop().value.stop().then(__ => done()));
+                    .when(_ => done());
             }
         }
 
@@ -68,9 +68,6 @@ class HttpModuleTest {
         })
         class HMTest {}
 
-        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
-                host: '0.0.0.0',
-                port: 4443
-        })]);
+        Hapiness.bootstrap(HMTest, []);
     }
 }
