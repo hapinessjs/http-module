@@ -49,7 +49,7 @@ class ValidateResponseOperator<T, R> implements Operator<T, R> {
 /**
  * Operator subscriber class definition
  */
-class ValidateResponseSubscriber<T, R> extends Subscriber<T> {
+class ValidateResponseSubscriber<T> extends Subscriber<T> {
     /**
      * Class constructor
      *
