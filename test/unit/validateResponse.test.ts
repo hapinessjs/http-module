@@ -74,4 +74,14 @@ class ValidateResponseTest {
             .subscribe();
     }
 
+    @test('- `validateResponse` schema any')
+    test7() {
+        Observable
+            .of({ body: { data: true, __v: 1 }, response: { statusCode: 200 } })
+            .validateResponse(Joi.any())
+            .subscribe(
+                _ => unit.object(_).is({ data: true, __v: 1 })
+            );
+    }
+
 }
