@@ -9,13 +9,12 @@ import { test, suite } from 'mocha-typescript';
 import * as unit from 'unit.js';
 
 import { Hapiness, HapinessModule, Lib } from '@hapiness/core';
-import { HttpServerExt } from '@hapiness/core/extensions/http-server';
 
 // element to test
 import { HttpModule, HttpService } from '../../src';
 
 @suite('- Integration HttpModuleTest method HttpService#request')
-class HttpModuleTest {
+export class HttpModuleTest {
     /**
      * Function executed before the suite
      */

@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpService } from '../../src';
 
 @suite('- Unit HttpServiceTest file')
-class HttpServiceTest {
+export class HttpServiceTest {
     // private property to store service instance
     private _httpService: HttpService;
 

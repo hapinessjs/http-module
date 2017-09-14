@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import '../../src/observable/add/validateResponse';
 
 @suite('- Unit HttpServiceTest file')
-class ValidateResponseTest {
+export class ValidateResponseTest {
 
     @test('- `validateResponse` validate OK')
     test1() {
