@@ -9,13 +9,12 @@ import { test, suite } from 'mocha-typescript';
 import * as unit from 'unit.js';
 
 import { Hapiness, HapinessModule, Lib } from '@hapiness/core';
-import { HttpServerExt } from '@hapiness/core/extensions/http-server';
 
 // element to test
 import { HttpModule, HttpService } from '../../src';
 
 @suite('- Integration HttpModuleTest')
-class HttpModuleTest {
+export class HttpModuleTest {
     /**
      * Function executed before the suite
      */
@@ -53,7 +52,7 @@ class HttpModuleTest {
                 unit
                     .object(this._httpService)
                     .isInstanceOf(HttpService)
-                    .when(_ => Hapiness['extensions'].pop().value.stop().then(__ => done()));
+                    .when(_ => done());
             }
         }
 
@@ -68,9 +67,6 @@ class HttpModuleTest {
         })
         class HMTest {}
 
-        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
-                host: '0.0.0.0',
-                port: 4443
-        })]);
+        Hapiness.bootstrap(HMTest, []);
     }
 }

@@ -5,6 +5,8 @@ import {
 }
     from '@akanass/rx-http-request';
 
+export { RxCookieJar, Cookie, RequestAPI, Request, CoreOptions, RequiredUriUrl, RxHttpRequestResponse };
+
 @Injectable()
 export class HttpService {
     // private property to store RxHttpRequest instance

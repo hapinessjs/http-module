@@ -41,6 +41,7 @@
     * [Yarn or NPM it in your package.json](#yarn-or-npm-it-in-your-packagejson)
     * [Import HttpModule](#import-httpmodule)
     * [Use it anywhere](#use-it-anywhere)
+* [Validate Response](#validateResponse-operator)
 * [API in Detail](#api-in-detail)
 * [Contributing](#contributing)
 * [Change History](#change-history)
@@ -61,8 +62,8 @@ $ yarn add @hapiness/http
 
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-rc.4",
-    "@hapiness/http": "^1.0.0-rc.4",
+    "@hapiness/core": "^1.0.0-rc.7",
+    "@hapiness/http": "^1.0.0-rc.7",
     //...
 }
 //...
@@ -114,6 +115,32 @@ class LibWithHttpCalls {
 
 [Back to top](#table-of-contents)
 
+## validateResponse operator
+
+Format your data with the Joi Schema validation and throw an error in the Observable if statusCode >= 400
+
+`validateResponse(<Joi.Schema>, [ignoredStatusCodes?])`
+
+```javascript
+import { Lib } from '@hapiness/core';
+import { HttpService } from '@hapiness/http';
+import '@hapiness/http/observable/add/validateResponse';
+
+@Lib()
+class LibWithHttpCalls {
+    constructor(private _http: HttpService){}
+    
+    crawlWebPage(): void {
+        this._http.get('http://my-api/data')
+            .validateResponse(MySchema)
+            .subscribe(
+                (data) => console.log(data),
+                (err) => console.error(err) // Show error in console
+            );
+    }
+}
+```
+
 ## API in Detail
 
 This module is an **encapsulation** of [Rx-Http-Request](https://github.com/njl07/rx-http-request) library to allow their features inside [Hapiness](https://github.com/hapinessjs/hapiness) framework.
@@ -150,6 +177,9 @@ To set up your development environment:
 
 ## Change History
 
+* v1.0.0-rc.7 (2017-09-14)
+    * validateResponse operator.
+    * Latest packages' versions.
 * v1.0.0-rc.6 (2017-07-17)
     * Latest packages' versions.
     * Update dependencies declarations.
