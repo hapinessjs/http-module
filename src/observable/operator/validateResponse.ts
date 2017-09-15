@@ -13,18 +13,22 @@ import * as Joi from 'joi';
  * @return {Observable<T>|WebSocketSubject<T>}
  */
 
-export function validateResponse<T>(this: Observable<T>, schema: Joi.Schema = Joi.any(), ignoreStatusCodes: number[] = []): Observable<T> {
-    return higherOrder<T>(schema, ignoreStatusCodes)(this);
+export function validateResponse<R>(
+        this: Observable<any>,
+        schema: Joi.Schema = Joi.any(),
+        ignoreStatusCodes: number[] = []): Observable<R> {
+
+    return higherOrder<R>(schema, ignoreStatusCodes)(this);
   }
 
-function higherOrder<T>(schema: Joi.Schema, ignoreStatusCodes: number[]): (source: Observable<T>) => Observable<any> {
-    return (source: Observable<T>) => source.lift(new ValidateResponseOperator(schema, ignoreStatusCodes));
+function higherOrder<R>(schema: Joi.Schema, ignoreStatusCodes: number[]): (source: Observable<any>) => Observable<R> {
+    return (source: Observable<any>) => <Observable<R>>source.lift(new ValidateResponseOperator(schema, ignoreStatusCodes));
 }
 
 /**
  * Operator class definition
  */
-class ValidateResponseOperator<T, R> implements Operator<T, R> {
+class ValidateResponseOperator<R> implements Operator<any, R> {
     /**
      * Class constructor
      *
@@ -41,7 +45,7 @@ class ValidateResponseOperator<T, R> implements Operator<T, R> {
      *
      * @return {AnonymousSubscription|Subscription|Promise<PushSubscription>|TeardownLogic}
      */
-    call(subscriber: Subscriber<T | R>, source: any): any {
+    call(subscriber: Subscriber<any>, source: any): any {
         return source.subscribe(new ValidateResponseSubscriber(subscriber, this._schema, this._ignoreStatusCodes));
     }
 }
@@ -49,7 +53,7 @@ class ValidateResponseOperator<T, R> implements Operator<T, R> {
 /**
  * Operator subscriber class definition
  */
-class ValidateResponseSubscriber<T> extends Subscriber<T> {
+class ValidateResponseSubscriber<R> extends Subscriber<any> {
     /**
      * Class constructor
      *
@@ -58,7 +62,7 @@ class ValidateResponseSubscriber<T> extends Subscriber<T> {
      * @param _schema {Joi.Schema}
      * @param _ignoreStatusCodes {number[]}
      */
-    constructor(destination: Subscriber<T>,
+    constructor(destination: Subscriber<R>,
                 private _schema: Joi.Schema, private _ignoreStatusCodes: number[]) {
         super(destination);
     }
