@@ -12,23 +12,26 @@ import * as Joi from 'joi';
  *
  * @return {Observable<T>|WebSocketSubject<T>}
  */
-export function validateResponse<T>(schema: Joi.Schema, ignoreStatusCodes: number[] = []): Observable<T> {
-    return this.lift(new ValidateResponseOperator(this, schema, ignoreStatusCodes));
+
+export function validateResponse<T>(this: Observable<T>, schema: Joi.Schema = Joi.any(), ignoreStatusCodes: number[] = []): Observable<T> {
+    return higherOrder<T>(schema, ignoreStatusCodes)(this);
+  }
+
+function higherOrder<T>(schema: Joi.Schema, ignoreStatusCodes: number[]): (source: Observable<T>) => Observable<any> {
+    return (source: Observable<T>) => source.lift(new ValidateResponseOperator(schema, ignoreStatusCodes));
 }
 
 /**
  * Operator class definition
  */
-class ValidateResponseOperator<T> implements Operator<T, T> {
+class ValidateResponseOperator<T, R> implements Operator<T, R> {
     /**
      * Class constructor
      *
-     * @param _source subscriber source
      * @param _schema {Joi.Schema}
      * @param _ignoreStatusCodes {number[]}
      */
-    constructor(private _source: Observable<T>, private _schema: Joi.Schema, private _ignoreStatusCodes: number[]) {
-    }
+    constructor(private _schema: Joi.Schema, private _ignoreStatusCodes: number[]) {}
 
     /**
      * Function calls when operator is executing
@@ -38,8 +41,8 @@ class ValidateResponseOperator<T> implements Operator<T, T> {
      *
      * @return {AnonymousSubscription|Subscription|Promise<PushSubscription>|TeardownLogic}
      */
-    call(subscriber: Subscriber<T>, source: any): any {
-        return source.subscribe(new ValidateResponseSubscriber(subscriber, this._source, this._schema, this._ignoreStatusCodes));
+    call(subscriber: Subscriber<T | R>, source: any): any {
+        return source.subscribe(new ValidateResponseSubscriber(subscriber, this._schema, this._ignoreStatusCodes));
     }
 }
 
@@ -55,7 +58,7 @@ class ValidateResponseSubscriber<T> extends Subscriber<T> {
      * @param _schema {Joi.Schema}
      * @param _ignoreStatusCodes {number[]}
      */
-    constructor(destination: Subscriber<T>, private _source: Observable<T>,
+    constructor(destination: Subscriber<T>,
                 private _schema: Joi.Schema, private _ignoreStatusCodes: number[]) {
         super(destination);
     }
@@ -63,32 +66,31 @@ class ValidateResponseSubscriber<T> extends Subscriber<T> {
     /**
      * Function to send result to next subscriber
      *
-     * @param value result for next subscriber
+     * @param data result for next subscriber
      *
      * @private
      */
-    protected _next(value: T): void {
-        this._source.subscribe((data: any) => {
-            if (!!data.response) {
-                if (data.response.statusCode >= 400 &&
-                    this._ignoreStatusCodes.indexOf(data.response.statusCode) < 0) {
+    protected _next(data: any): void {
 
-                        this.destination.error(Biim.create(data.response.statusCode, data.body.message, data.body));
-                } else {
-                    const res = Joi.validate(data.body, this._schema, {
-                        stripUnknown: {
-                            arrays: false,
-                            objects: true,
-                        }
-                    });
-                    if (!!res.error) {
-                        this.destination.error(Biim.wrap(res.error));
-                    } else {
-                        this.destination.next(res.value);
-                        this.destination.complete();
+        if (!!data.response) {
+            if (data.response.statusCode >= 400 &&
+                this._ignoreStatusCodes.indexOf(data.response.statusCode) < 0) {
+
+                    this.destination.error(Biim.create(data.response.statusCode, data.body.message, data.body));
+            } else {
+                const res = Joi.validate(data.body, this._schema, {
+                    stripUnknown: {
+                        arrays: false,
+                        objects: true,
                     }
+                });
+                if (!!res.error) {
+                    this.destination.error(Biim.wrap(res.error));
+                } else {
+                    this.destination.next(res.value);
+                    this.destination.complete();
                 }
             }
-        });
+        }
     }
 }
