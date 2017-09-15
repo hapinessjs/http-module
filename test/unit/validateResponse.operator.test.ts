@@ -83,5 +83,4 @@ export class ValidateResponseTest {
                 _ => unit.object(_).is({ data: true, __v: 1 })
             );
     }
-
 }
