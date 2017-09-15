@@ -78,7 +78,7 @@ export class ValidateResponseTest {
     test7() {
         Observable
             .of({ body: { data: true, __v: 1 }, response: { statusCode: 200 } })
-            .validateResponse(Joi.any())
+            .validateResponse()
             .subscribe(
                 _ => unit.object(_).is({ data: true, __v: 1 })
             );
