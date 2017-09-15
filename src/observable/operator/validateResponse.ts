@@ -13,7 +13,7 @@ import * as Joi from 'joi';
  * @return {Observable<T>|WebSocketSubject<T>}
  */
 
-export function validateResponse<T>(this: Observable<T>, schema: Joi.Schema, ignoreStatusCodes: number[] = []): Observable<T> {
+export function validateResponse<T>(this: Observable<T>, schema: Joi.Schema = Joi.any(), ignoreStatusCodes: number[] = []): Observable<T> {
     return higherOrder<T>(schema, ignoreStatusCodes)(this);
   }
 
