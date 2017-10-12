@@ -1,6 +1,6 @@
 {
     "name": "@hapiness/http",
-    "version": "1.0.0-rc.7.2",
+    "version": "1.0.0",
     "description": "Http Module for the Hapiness framework, allowing user to deal with http request",
     "main": "index.js",
     "types": "index.d.ts",
@@ -73,7 +73,7 @@
     },
     "devDependencies": {
         "@hapiness/biim": "^1.1.0",
-        "@hapiness/core": "1.0.0",
+        "@hapiness/core": "^1.0.0",
         "@types/fs-extra": "^4.0.2",
         "@types/joi": "^10.4.3",
         "coveralls": "^3.0.0",
@@ -93,7 +93,7 @@
     },
     "peerDependencies": {
         "@hapiness/biim": "^1.1.0",
-        "@hapiness/core": "1.0.0",
+        "@hapiness/core": "^1.0.0",
         "rxjs": "^5.4.3"
     }
 }
