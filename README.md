@@ -53,17 +53,19 @@
 ### `yarn` or `npm` it in your `package.json`
 
 ```bash
-$ npm install --save @hapiness/http
+$ npm install --save @hapiness/http @hapiness/biim @hapiness/core rxjs
 
 or
 
-$ yarn add @hapiness/http
+$ yarn add @hapiness/http @hapiness/biim @hapiness/core rxjs
 ```
 
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-rc.7",
-    "@hapiness/http": "^1.0.0-rc.7.2",
+    "@hapiness/biim": "^1.1.0",
+    "@hapiness/core": "^1.0.0",
+    "@hapiness/http": "^1.0.0",
+    "rxjs": "^5.4.3",
     //...
 }
 //...
@@ -177,39 +179,10 @@ To set up your development environment:
 
 ## Change History
 
-* v1.0.0-rc.7.2 (2017-09-15)
-    * validateResponse operator.
-    * Latest packages' versions.
-* v1.0.0-rc.6 (2017-07-17)
-    * Latest packages' versions.
-    * Update dependencies declarations.
-* v1.0.0-rc.4 (2017-07-10)
-    * Latest packages' versions.
-    * Update tests for latest `tslint` version.
-    * Module version related to core version.
-* v1.0.0-rc.3 (2017-07-04)
-    * Latest packages' versions.
-    * Module version related to core version.
-* v1.0.0-beta.6 (2017-05-26)
-    * Latest packages' versions.
-    * Module version related to core version.
-* v1.0.0-beta.5 (2017-05-15)
-    * Latest packages' versions.
-    * Module version related to core version.
-* v1.0.0-beta.4 (2017-05-15)
-    * Latest packages' versions.
-    * Module version related to core version.
-* v1.0.0-beta.3 (2017-05-12)
-    * Latest packages' versions.
-    * Add check files in packaging process.
-    * Extended `tsconfig`.
-    * Module version related to core version.
-* v1.0.0-beta.2 (2017-04-18)
-    * Create `Http` module.
-    * Implementation of [Rx-Http-Request](https://github.com/njl07/rx-http-request) API.
-    * Tests module API.
-    * Documentation.
-    * Module version related to core version.
+* v1.0.0 (2017-10-12)
+    * First stable version
+    * Implementation of all features.
+    * Version related to `core` version
     
 [Back to top](#table-of-contents)
 
@@ -217,7 +190,7 @@ To set up your development environment:
 
 <table>
     <tr>
-        <td colspan="4" align="center"><a href="https://www.tadaweb.com"><img src="https://tadaweb.com/images/tadaweb/logo.png" width="117" alt="tadaweb" /></a></td>
+        <td colspan="4" align="center"><a href="https://www.tadaweb.com"><img src="http://bit.ly/2xHQkTi" width="117" alt="tadaweb" /></a></td>
     </tr>
     <tr>
         <td align="center"><a href="https://github.com/Juneil"><img src="https://avatars3.githubusercontent.com/u/6546204?v=3&s=117" width="117"/></a></td>
