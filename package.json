@@ -69,23 +69,23 @@
     "homepage": "https://github.com/hapinessjs/http-module#readme",
     "dependencies": {
         "@akanass/rx-http-request": "^2.6.0",
-        "@types/node": "^8.0.28"
+        "@types/node": "^8.0.34"
     },
     "devDependencies": {
         "@hapiness/biim": "^1.1.0",
-        "@hapiness/core": "1.0.0-rc.7",
+        "@hapiness/core": "1.0.0",
         "@types/fs-extra": "^4.0.2",
-        "@types/joi": "^10.4.2",
-        "coveralls": "^2.13.1",
+        "@types/joi": "^10.4.3",
+        "coveralls": "^3.0.0",
         "fs-extra": "^4.0.0",
         "istanbul": "^1.1.0-alpha.1",
         "mocha": "^3.5.3",
-        "mocha-typescript": "^1.1.8",
+        "mocha-typescript": "^1.1.10",
         "rimraf": "^2.6.2",
         "rxjs": "^5.4.3",
         "ts-node": "^3.3.0",
         "tslint": "^5.7.0",
-        "typescript": "^2.5.2",
+        "typescript": "^2.5.3",
         "unit.js": "^2.0.0"
     },
     "engines": {
@@ -93,7 +93,7 @@
     },
     "peerDependencies": {
         "@hapiness/biim": "^1.1.0",
-        "@hapiness/core": "1.0.0-rc.7",
+        "@hapiness/core": "1.0.0",
         "rxjs": "^5.4.3"
     }
 }
