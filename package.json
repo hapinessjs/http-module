@@ -1,8 +1,8 @@
 {
     "name": "@hapiness/http",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Http Module for the Hapiness framework, allowing user to deal with http request",
-    "main": "index.js",
+    "main": "commonjs/index.js",
     "types": "index.d.ts",
     "private": false,
     "scripts": {
@@ -68,32 +68,32 @@
     },
     "homepage": "https://github.com/hapinessjs/http-module#readme",
     "dependencies": {
-        "@akanass/rx-http-request": "^2.6.0",
-        "@types/node": "^8.0.34"
+        "@akanass/rx-http-request": "^2.7.0",
+        "@types/node": "^8.0.53"
     },
     "devDependencies": {
-        "@hapiness/biim": "^1.1.0",
-        "@hapiness/core": "^1.0.0",
-        "@types/fs-extra": "^4.0.2",
-        "@types/joi": "^10.4.3",
+        "@hapiness/biim": "^1.4.0",
+        "@hapiness/core": "^1.2.2",
+        "@types/fs-extra": "^4.0.5",
+        "@types/joi": "^13.0.0",
         "coveralls": "^3.0.0",
-        "fs-extra": "^4.0.0",
+        "fs-extra": "^4.0.2",
         "istanbul": "^1.1.0-alpha.1",
-        "mocha": "^3.5.3",
-        "mocha-typescript": "^1.1.10",
+        "mocha": "^4.0.1",
+        "mocha-typescript": "^1.1.12",
         "rimraf": "^2.6.2",
-        "rxjs": "^5.4.3",
+        "rxjs": "^5.5.2",
         "ts-node": "^3.3.0",
-        "tslint": "^5.7.0",
-        "typescript": "^2.5.3",
+        "tslint": "^5.8.0",
+        "typescript": "^2.6.1",
         "unit.js": "^2.0.0"
     },
     "engines": {
         "node": ">=7.0.0"
     },
     "peerDependencies": {
-        "@hapiness/biim": "^1.1.0",
-        "@hapiness/core": "^1.0.0",
-        "rxjs": "^5.4.3"
+        "@hapiness/biim": "^1.4.0",
+        "@hapiness/core": "^1.2.2",
+        "rxjs": "^5.5.2"
     }
 }

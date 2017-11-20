@@ -62,10 +62,10 @@ $ yarn add @hapiness/http @hapiness/biim @hapiness/core rxjs
 
 ```javascript
 "dependencies": {
-    "@hapiness/biim": "^1.1.0",
-    "@hapiness/core": "^1.0.0",
-    "@hapiness/http": "^1.0.0",
-    "rxjs": "^5.4.3",
+    "@hapiness/biim": "^1.4.0",
+    "@hapiness/core": "^1.2.2",
+    "@hapiness/http": "^1.1.0",
+    "rxjs": "^5.5.2",
     //...
 }
 //...
@@ -179,6 +179,10 @@ To set up your development environment:
 
 ## Change History
 
+* v1.1.0 (2017-11-20)
+    * Latest packages' versions.
+    * Documentation.
+    * Change packaging process.
 * v1.0.0 (2017-10-12)
     * First stable version
     * Implementation of all features.
