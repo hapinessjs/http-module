@@ -1,8 +1,8 @@
 {
     "name": "@hapiness/http",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Http Module for the Hapiness framework, allowing user to deal with http request",
-    "main": "commonjs/index.js",
+    "main": "index.js",
     "types": "index.d.ts",
     "private": false,
     "scripts": {
