@@ -8,8 +8,7 @@ import { test, suite } from 'mocha-typescript';
  */
 import * as unit from 'unit.js';
 
-import { Hapiness, HapinessModule, Lib } from '@hapiness/core';
-import { HttpServerExt } from '@hapiness/core/extensions/http-server';
+import { Hapiness, HapinessModule, Lib, HttpServerService } from '@hapiness/core';
 import { Observable } from 'rxjs/Observable';
 
 // element to test
@@ -106,14 +105,12 @@ export class HttpModuleTest {
             ],
             declarations: [
                 HttpLib
-            ]
+            ],
+            providers: [HttpServerService]
         })
         class HMTest {}
 
-        Hapiness.bootstrap(HMTest, [HttpServerExt.setConfig({
-                host: '0.0.0.0',
-                port: 4443
-        })]);
+        Hapiness.bootstrap(HMTest);
     }
 
     /**
