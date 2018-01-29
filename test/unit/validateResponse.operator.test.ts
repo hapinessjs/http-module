@@ -50,9 +50,43 @@ export class ValidateResponseTest {
     test4() {
         Observable
             .of({ body: 123, response: { statusCode: 400 } })
-            .validateResponse(Joi.number(), [ 400 ])
+            .validateResponse(Joi.number(), [400])
             .subscribe(
                 _ => unit.number(_).is(123)
+            );
+    }
+
+    @test('- `validateResponse` string in 404 error body')
+    test404(done) {
+        Observable
+            .of({ body: 'Not Found', response: { statusCode: 404 } })
+            .validateResponse()
+            .subscribe(
+                _ => done(new Error('Should not be there')),
+                err => {
+                    unit.bool(err.isBoom).isTrue();
+                    unit.string(err.message).is('Not Found');
+                    unit.number(err.output.statusCode).is(404);
+
+                    done();
+                }
+            );
+    }
+
+    @test('- `validateResponse` string in 404 error body with object')
+    test404Object(done) {
+        Observable
+            .of({ body: { message: 'Not Found' }, response: { statusCode: 404 } })
+            .validateResponse()
+            .subscribe(
+                _ => done(new Error('Should not be there')),
+                err => {
+                    unit.bool(err.isBoom).isTrue();
+                    unit.string(err.message).is('Not Found');
+                    unit.number(err.output.statusCode).is(404);
+
+                    done();
+                }
             );
     }
 
