@@ -56,6 +56,23 @@ export class ValidateResponseTest {
             );
     }
 
+    @test('- `validateResponse` string in 404 error body')
+    test404(done) {
+        Observable
+            .of({ body: 'Not Found', response: { statusCode: 404 } })
+            .validateResponse()
+            .subscribe(
+                _ => done(new Error('Should not be there')),
+                err => {
+                    unit.bool(err.isBoom).isTrue();
+                    unit.string(err.message).is('Not Found');
+                    unit.number(err.output.statusCode).is(404);
+
+                    done();
+                }
+            );
+    }
+
     @test('- `validateResponse` clean object returned')
     test5() {
         Observable
