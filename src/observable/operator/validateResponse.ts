@@ -79,7 +79,9 @@ class ValidateResponseSubscriber<R> extends Subscriber<any> {
         if (!!data.response) {
             if (data.response.statusCode >= 400 &&
                 this._ignoreStatusCodes.indexOf(data.response.statusCode) < 0) {
-
+                    if (typeof data.body === 'string') {
+                        data.body = { message: data.body };
+                    }
                     this.destination.error(Biim.create(data.response.statusCode, data.body.message, data.body, data.body));
             } else {
                 const res = Joi.validate(data.body, this._schema, {
