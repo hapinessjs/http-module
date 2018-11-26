@@ -1,4 +1,4 @@
-import { Injectable, EventManager, Optional } from '@hapiness/core';
+import { Injectable, EventManager, Optional, Inject, EventManagerExt } from '@hapiness/core';
 import { Observable } from 'rxjs/Observable';
 import * as cloneDeep from 'lodash.clonedeep';
 import * as originalRequest from 'request';
@@ -17,15 +17,15 @@ export class HttpService {
     /**
      * Service constructor
      */
-    constructor(@Optional() _eventManager?: EventManager) {
+    constructor(@Optional() @Inject(EventManagerExt) _eventManager?: EventManager) {
         if (_eventManager) {
             const clonedRequest = cloneDeep(originalRequest);
-            const originalStart = clonedRequest.Request.start;
+            const originalStart = clonedRequest.Request.prototype.start;
             clonedRequest.Request.prototype.start = function() {
                 this.once('request', _req => {
                     _eventManager.emit('hapiness:http:begin', { req: _req });
                 });
-                this.once('end', _res => {
+                this.once('response', _res => {
                     _eventManager.emit('hapiness:http:end', { res: _res });
                 });
                 Reflect.apply(originalStart, this, []);
