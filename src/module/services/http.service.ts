@@ -1,9 +1,7 @@
-import { Injectable, EventManager, Optional, Inject, EventManagerExt } from '@hapiness/core';
+import { Injectable } from '@hapiness/core';
 import { Observable } from 'rxjs/Observable';
-import * as cloneDeep from 'lodash.clonedeep';
-import * as originalRequest from 'request';
 import {
-    RxCookieJar, RxHttpRequest, RxHttpRequestResponse, Cookie, CoreOptions, Request, RequestAPI, RequiredUriUrl, RxHR
+    RxCookieJar, RxHR, RxHttpRequest, RxHttpRequestResponse, Cookie, CoreOptions, Request, RequestAPI, RequiredUriUrl
 }
     from '@akanass/rx-http-request';
 
@@ -17,23 +15,8 @@ export class HttpService {
     /**
      * Service constructor
      */
-    constructor(@Optional() @Inject(EventManagerExt) _eventManager?: EventManager) {
-        if (_eventManager) {
-            const clonedRequest = cloneDeep(originalRequest);
-            const originalStart = clonedRequest.Request.prototype.start;
-            clonedRequest.Request.prototype.start = function() {
-                this.once('request', _req => {
-                    _eventManager.emit('hapiness:http:begin', { req: _req });
-                });
-                this.once('response', _res => {
-                    _eventManager.emit('hapiness:http:end', { res: _res });
-                });
-                Reflect.apply(originalStart, this, []);
-            }
-            this._rxHR = new RxHttpRequest(clonedRequest);
-        } else {
-            this._rxHR = RxHR;
-        }
+    constructor() {
+        this._rxHR = RxHR;
     }
 
     /**
